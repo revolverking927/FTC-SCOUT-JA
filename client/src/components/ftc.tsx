@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ClipPlayer } from "./ClipPlayer";
 import type { FtcAward, FtcMatch } from "@/lib/api";
-import { awardName, eventTitle, seasonLabel } from "@/lib/format";
+import { awardName, eventTitle, gameName, seasonFull, seasonLabel } from "@/lib/format";
 import { Empty } from "./ui";
 
 /** Matches with both alliances; `focus` highlights one team and colours W/L for it. */
@@ -158,7 +158,7 @@ export function AwardList({ awards, showTeam, showEvent }: { awards: FtcAward[];
               {a.personName ? `${showTeam && a.number ? " · " : ""}${a.personName}` : ""}
               {showEvent && a.eventCode && a.season ? (
                 <Link href={`/events/${a.season}/${a.eventCode}`} style={{ color: "var(--ink-2)" }}>
-                  {eventTitle(a.eventName)} · {seasonLabel(a.season)}
+                  {eventTitle(a.eventName)} · {seasonFull(a.season)}
                 </Link>
               ) : null}
             </div>
@@ -183,6 +183,7 @@ export function SeasonChips({
       {seasons.map((s) => (
         <button key={s} type="button" className="chip" aria-pressed={value === s} onClick={() => onChange(s)}>
           {seasonLabel(s)}
+          {gameName(s) ? <span className="chip-game"> · {gameName(s)}</span> : null}
         </button>
       ))}
     </div>

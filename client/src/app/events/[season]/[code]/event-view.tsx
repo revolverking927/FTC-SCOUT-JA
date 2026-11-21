@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import useSWR from "swr";
 import { ApiError, type FirstAlliance, type FtcEventDetail } from "@/lib/api";
-import { eventTitle, fmt, fmtRange, record, seasonLabel } from "@/lib/format";
+import { eventTitle, fmt, fmtRange, record, seasonFull, seasonLabel } from "@/lib/format";
 import { AwardList, MatchList } from "@/components/ftc";
 import { Empty, ErrorNotice, Rank, SkeletonRows, SortableTable, Tile, type Column } from "@/components/ui";
 import { IconArrowLeft, IconExternal } from "@/components/icons";
@@ -64,7 +64,7 @@ export function EventView() {
       <div className="pagehead" style={{ paddingTop: 18 }}>
         <div>
           <div className="eyebrow">
-            {seasonLabel(Number(season))} · {data?.kind ?? "Event"} · {code}
+            {seasonFull(Number(season))} · {data?.kind ?? "Event"} · {code}
           </div>
           <h1 className="display">{data?.name ? eventTitle(data.name) : isLoading ? "Loading…" : code}</h1>
           <p>

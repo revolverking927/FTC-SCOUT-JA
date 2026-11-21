@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { API_URL, del, fetcher, type CalEvent, type EventMatch } from "@/lib/api";
-import { dateParts, eventTitle, fmtRange, seasonLabel } from "@/lib/format";
+import { dateParts, eventTitle, fmtRange, seasonFull, seasonLabel } from "@/lib/format";
 import { useAuth } from "@/lib/auth";
 import { Empty, ErrorNotice, Notice, PageHead, SkeletonRows, useToast } from "@/components/ui";
 import { IconArrowRight, IconCalendar, IconChevron, IconExternal, IconTrash } from "@/components/icons";
@@ -87,7 +87,7 @@ function EventRow({ ev, past, onDeleted }: { ev: CalEvent; past: boolean; onDele
         </div>
         <div className="ev-meta">
           {fmtRange(ev.start, ev.end)}
-          {ev.season ? ` · ${seasonLabel(ev.season)} season` : ""}
+          {ev.season ? ` · ${seasonFull(ev.season)} season` : ""}
           {ev.location ? ` · ${ev.location}` : ""}
           {ev.entries ? ` · ${ev.entries} scouting reports` : ""}
         </div>

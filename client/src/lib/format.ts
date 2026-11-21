@@ -67,6 +67,24 @@ export const meaningful = (obs: Record<string, string> = {}) =>
 /** FTCScout season year → game season label ("2025" → "2025–26"). */
 export const seasonLabel = (s: number) => `${s}–${String(s + 1).slice(-2)}`;
 
+/**
+ * Official FTC game names, from the FIRST Events API (GET /v2.0/{season} → gameName).
+ * Add next season's name here once FIRST announces it each September.
+ */
+const GAME_NAMES: Record<number, string> = {
+  2019: "SKYSTONE",
+  2020: "ULTIMATE GOAL",
+  2021: "FREIGHT FRENZY",
+  2022: "POWERPLAY",
+  2023: "CENTERSTAGE",
+  2024: "INTO THE DEEP",
+  2025: "DECODE",
+  2026: "BIOBUZZ",
+};
+export const gameName = (s: number) => GAME_NAMES[s] ?? "";
+/** "2025–26 · DECODE" (just the years if the name isn't known). */
+export const seasonFull = (s: number) => (GAME_NAMES[s] ? `${seasonLabel(s)} · ${GAME_NAMES[s]}` : seasonLabel(s));
+
 const AWARD_NAMES: Record<string, string> = {
   Inspire: "Inspire Award",
   Winner: "Winning Alliance",

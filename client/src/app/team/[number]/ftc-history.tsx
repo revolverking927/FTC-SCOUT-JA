@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import useSWR from "swr";
 import type { FtcAward, FtcMatch, FtcTeamSeason } from "@/lib/api";
-import { awardName, eventTitle, fmt, fmtRange, ordinal, record, seasonLabel } from "@/lib/format";
+import { awardName, eventTitle, fmt, fmtRange, ordinal, record, seasonFull, seasonLabel } from "@/lib/format";
 import { AwardList, MatchList, SeasonChips } from "@/components/ftc";
 import { Empty, SkeletonRows } from "@/components/ui";
 
@@ -43,7 +43,7 @@ export function FtcHistory({ number }: { number: string }) {
                 <div>
                   <div style={{ fontWeight: 700 }}>{r.name}</div>
                   <div className="muted" style={{ fontSize: 13 }}>
-                    {seasonLabel(r.season)} season{r.start ? ` · ${fmtRange(r.start, null)}` : ""}
+                    {seasonFull(r.season)} season{r.start ? ` · ${fmtRange(r.start, null)}` : ""}
                   </div>
                 </div>
                 <span className="badge">{r.competed ? "Competed" : "Registered · no results"}</span>

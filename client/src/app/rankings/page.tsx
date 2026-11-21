@@ -3,7 +3,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import type { ChampRow, FtcRankRow, FtcSeasonInfo } from "@/lib/api";
-import { record, seasonLabel } from "@/lib/format";
+import { record, seasonFull, seasonLabel } from "@/lib/format";
 import { SeasonChips } from "@/components/ftc";
 import {
   Empty,
@@ -108,7 +108,7 @@ function FtcRankings({ match }: { match: (r: FtcRankRow) => boolean }) {
             href={(r) => `/team/${r.number}`}
           />
         ) : (
-          <Empty title={data?.season ? `No results for ${seasonLabel(data.season)}` : "No FTCScout data yet"}>
+          <Empty title={data?.season ? `No results for ${seasonFull(data.season)}` : "No FTCScout data yet"}>
             Results appear after the server's FTCScout sync.
           </Empty>
         )}
