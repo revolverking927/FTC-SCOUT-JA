@@ -18,13 +18,7 @@ import {
   type FtcEventDetail,
   type Recording,
 } from "@/lib/api";
-import {
-  eventTitle,
-  fmtRange,
-  recordingName,
-  seasonLabel,
-  shortDate,
-} from "@/lib/format";
+import { eventTitle, fmtRange, recordingName, seasonFull, seasonLabel, shortDate } from "@/lib/format";
 import {
   Empty,
   ErrorNotice,
@@ -558,7 +552,7 @@ function RecordingView({
             <h2 className="display">Match clips</h2>
             {rec ? (
               <div className="muted" style={{ fontSize: 13 }}>
-                {recordingName(rec)} · {seasonLabel(rec.season)} season ·{" "}
+                {recordingName(rec)} · {seasonFull(rec.season)} season ·{" "}
                 {shortDate(rec.videoStart)}
               </div>
             ) : null}

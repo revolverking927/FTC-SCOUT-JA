@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useSWR from "swr";
 import type { FtcMatch } from "@/lib/api";
-import { dateParts, eventTitle, fmt, fmtRange, meaningful, record, seasonLabel } from "@/lib/format";
+import { dateParts, eventTitle, fmt, fmtRange, meaningful, record, seasonFull, seasonLabel } from "@/lib/format";
 import { MatchList } from "@/components/ftc";
 import { Empty, ErrorNotice, PageHead, Rank, SkeletonRows, Tile } from "@/components/ui";
 import { IconExternal } from "@/components/icons";
@@ -226,7 +226,7 @@ function ScrimDetailView({ id }: { id: string }) {
       <div className="pagehead" style={{ paddingTop: 22, paddingBottom: 14 }}>
         <div>
           <div className="eyebrow">
-            {s.season ? `${seasonLabel(s.season)} · ` : ""}
+            {s.season ? `${seasonFull(s.season)} · ` : ""}
             {isOfficial(s) ? "Official scrimmage" : "Scouted scrimmage"}
             {s.code ? ` · ${s.code}` : ""}
           </div>

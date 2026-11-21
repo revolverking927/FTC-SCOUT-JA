@@ -13,7 +13,7 @@ The Express app from `server/` is mounted inside Next at `client/src/pages/api/[
 (server is linked as the `ftc-scout-server` package; the client's `postinstall` installs its deps).
 `NEXT_PUBLIC_API_URL="/"` there means same-origin. Env on Vercel: `MONGODB_URI` (Atlas, Network Access
 0.0.0.0/0), `FTC_API_USER`, `FTC_API_TOKEN`, optional `YOUTUBE_API_KEY`. Daily cron: `client/vercel.json`.
-Deploys come from the fork `revolverking927/FTC-SCOUT-JA`, branch `video-lab`.
+Deploys come from the fork `revolverking927/FTC-SCOUT-JA`, branch `main` (work happens on `site-polish`, merged into main by pull request). FIRST award names can contain HTML (`<i>FIRST</i>®`): run them through `stripTags()`.
 
 ## Run
 
@@ -38,7 +38,7 @@ Checks: `cd client && npx tsc --noEmit && npx next build`. There are no automate
 Rules that matter:
 - **Jamaica only.** FTCScout's JM region and FIRST event lists include foreign teams; team lists keep only `country === "Jamaica"`. Visiting teams still appear on event pages. Scrimmages held abroad show under "Jamaican teams abroad".
 - Names/schools from the sheet win; FTCScout/FIRST only fill empty fields.
-- FTCScout season `2025` = the 2025–26 game season (its championship is in Feb 2026). UI shows `seasonLabel(2025)` → "2025–26".
+- FTCScout season `2025` = the 2025–26 game season (its championship is in Feb 2026). UI shows `seasonLabel(2025)` → "2025–26" and `seasonFull(2025)` → "2025–26 · DECODE" (game names in `GAME_NAMES`, `lib/format.ts`; add each new season's name from FIRST API `GET /v2.0/{season}` gameName).
 
 ## Server routes
 

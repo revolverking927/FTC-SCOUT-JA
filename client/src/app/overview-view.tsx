@@ -5,16 +5,7 @@ import { useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { post, type Overview } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import {
-  daysUntil,
-  eventTitle,
-  fmt,
-  fmtRange,
-  meaningful,
-  record,
-  seasonLabel,
-  timeAgo,
-} from "@/lib/format";
+import { daysUntil, eventTitle, fmt, fmtRange, meaningful, record, seasonFull, seasonLabel, timeAgo } from "@/lib/format";
 import {
   Empty,
   ErrorNotice,
@@ -61,7 +52,7 @@ export function OverviewView() {
       <PageHead
         eyebrow={
           data
-            ? `${seasonLabel(data.season)} season · Jamaica`
+            ? `${seasonFull(data.season)} season · Jamaica`
             : "FIRST Tech Challenge"
         }
         title={
@@ -153,7 +144,7 @@ export function OverviewView() {
                 {data?.topTeams.length
                   ? "Our scouting · average match total"
                   : data?.ftc.season
-                    ? `FTCScout OPR · ${seasonLabel(data.ftc.season)} season`
+                    ? `FTCScout OPR · ${seasonFull(data.ftc.season)} season`
                     : ""}
               </div>
             </div>
